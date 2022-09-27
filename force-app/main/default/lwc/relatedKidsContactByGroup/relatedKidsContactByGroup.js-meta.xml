@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <description>Related Kds Contact By Group</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__HomePage</target>
+    </targets>
+    <masterLabel>Related Kds Contact By Group</masterLabel>
+</LightningComponentBundle>

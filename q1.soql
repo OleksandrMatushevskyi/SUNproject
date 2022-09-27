@@ -1,3 +1,4 @@
 //SELECT Id, Kid__c, Present__c FROM Visit__c
 //SELECT Id, Teacher_Contact__c, (SELECT Name, Kid_Age__c FROM Contacts__r LIMIT 10) FROM Kids_Group__c WHERE Kid_Group_Type__c = 'JUNIOR group' 
-SELECT Id, Kid__r.Name FROM Visit__c WHERE Date_Visit__c = THIS_MONTH AND Kid__r.Kids_Group_FK__c = 'a0D7R00002R1oXDUAZ'
+//SELECT Id, Kid__r.Name FROM Visit__c WHERE Date_Visit__c = THIS_MONTH AND Kid__r.Kids_Group_FK__c = 'a0D7R00002R1oXDUAZ'
+SELECT Name FROM Contact WHERE Kids_Group_FK__c = 'a0D7R00002R1oXDUAZ'

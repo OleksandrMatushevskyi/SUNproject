@@ -1,0 +1,25 @@
+<!--
+ - Created by Sanchez on 27.09.2022.
+ -->
+
+<!-- Related Kds Contact By Group -->
+<template>
+  <lightning-card title="Data Contact List" icon-name="standard:contact_list">
+    <div class="info">
+      <c-item-kid-contact contacts={contacts}></c-item-kid-contact>
+    </div>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+      <lightning-button class="slds-m-left_x-small" label="Add Visit" onclick={handleClick}></lightning-button>
+    </div>
+  </lightning-card>
+  <template if:true={showForm}>
+    <lightning-card>
+      <div class="slds-p-around_medium lgc-bg">
+        <lightning-input type="text" label="Enter Last Name" onchange={handleLastNameChange}></lightning-input>
+      </div>
+      <div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button class="slds-m-left_x-small" label="Create Contact" onclick={createContact}></lightning-button>
+      </div>
+    </lightning-card>
+  </template>
+</template>
