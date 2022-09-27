@@ -7,14 +7,10 @@
   <template if:true={contacts.data}>
     <template for:each={contacts.data} for:item="contact">
       <lightning-card variant="narrow" title="Related Contact Info" icon-name="standard:contact" key={contact.Id}>
-        <p class="slds-p-horizontal_small">Name: {contact.Name}</p>
+        <p class="slds-p-horizontal_medium">{contact.Name}</p>
+        <p class="slds-p-horizontal_medium">Birthday: {contact.Birthday}</p>
 
-        <p class="slds-p-horizontal_small">
-          <lightning-formatted-email value={contact.Email}></lightning-formatted-email>
-        </p>
-        <p class="slds-p-horizontal_small">
-          <lightning-formatted-phone value={contact.Phone}></lightning-formatted-phone>
-        </p>
+
       </lightning-card>
     </template>
   </template>

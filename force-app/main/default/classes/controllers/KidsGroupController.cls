@@ -1,7 +1,3 @@
-/**
- * Created by Sanchez on 27.09.2022.
- */
-
 public with sharing class KidsGroupController {
     @AuraEnabled(Cacheable=true)
     public static List<Contact> getRelatedContacts(Id kidGroupId) {
@@ -12,6 +8,12 @@ public with sharing class KidsGroupController {
                 WITH SECURITY_ENFORCED
         ];
     }
+    @AuraEnabled
+    public static List<Kids_Group__c> getGroupsForCombobox(){
+        List<Kids_Group__c> groupsList = [SELECT Id, Name FROM Kids_Group__c];
+        return groupsList;
+    }
+
     /*@AuraEnabled
     public static void newContact(Id accountId, String lastName) {
         insert new Contact(AccountId = accountId, LastName = lastName);
