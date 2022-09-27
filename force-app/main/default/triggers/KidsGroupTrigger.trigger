@@ -3,5 +3,5 @@
  */
 
 trigger KidsGroupTrigger on Kids_Group__c (after insert, after update) {
-
+    KidsGroupHandler.handler(Trigger.newMap, Trigger.operationType);
 }
