@@ -1,13 +1,14 @@
 import { LightningElement, track } from 'lwc';
 import getGroupsForCombobox from '@salesforce/apex/KidsGroupController.getGroupsForCombobox';
 import getRelatedContacts from '@salesforce/apex/KidsGroupController.getRelatedContacts';
+import newVisit from '@salesforce/apex/KidsGroupController.newVisit';
 //import { refreshApex } from '@salesforce/apex';
-//import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 //Define columns for Datatable
 const columns = [
   { label : 'Contacts Name' , fieldName : 'Name'},  //field name is defined in object manager
-  { label : 'Birthday' , fieldName : 'Birthday'},
+  { label : 'Birthdate' , fieldName : 'Birthdate'},
   { label : 'Age' , fieldName : 'Age__c'},
 ]
 
@@ -17,7 +18,16 @@ export default class MarkVisitsByGroup extends LightningElement {
   @track optionsArray = []; //this array will store the options for combobox
   @track cardVisible = false;   //used for show/hide card functionality
   @track data = []; //used for storing contact details in data-table
-  @track columns = columns;
+  columns = columns;
+  selectedRows = [];
+  inputDate = new Date();
+
+  //I change date
+  handleChangedDate(event) {
+    this.inputDate = event.target.value;
+    console.log("change date: " + this.inputDate);
+
+  }
 
   //Now store option by returning the optionsArray
   get options(){
@@ -57,30 +67,30 @@ export default class MarkVisitsByGroup extends LightningElement {
         this.data = result;
       })
       .catch( error =>{
-        // eslint-disable-next-line no-alert
-        window.alert("error:"+error)
+        console.log("error: "+error);
       })
   }
+
   //Get details of selected rows
   getSelectedRows(event){
-    const selectedRowsDetails = event.detail.selectedRows;
+    this.selectedRows = event.detail.selectedRows;
     // eslint-disable-next-line no-alert
-    window.alert(JSON.stringify(selectedRowsDetails));
+    //window.alert(JSON.stringify(this.selectedRows));
   }
 
   createVisit() {
-    /*newVisit({accountId: this.recordId, lastName: this.lastName})
+    newVisit({dateValue: this.inputDate, selectedKids: this.selectedRows})
       .then(() => {
-        this.showForm = false;
+
         this.dispatchEvent(new ShowToastEvent({
           title: "Success",
           message: "New Visit created!",
           variant: "success"
         }));
-        /!*refreshApex(this.contacts).then(() => {
+        /*refreshApex(this.contacts).then(() => {
           // do something with the refreshed data in this.Obj
-        });*!/
+        });*/
       })
-      .catch(error => console.log(error))*/
+      .catch(error => console.log(error))
   }
 }
