@@ -1,15 +1,18 @@
 import { LightningElement, track } from 'lwc';
 import getGroupsForCombobox from '@salesforce/apex/KidsGroupController.getGroupsForCombobox';
 import getRelatedContacts from '@salesforce/apex/KidsGroupController.getRelatedContacts';
+//import { refreshApex } from '@salesforce/apex';
+//import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 //Define columns for Datatable
 const columns = [
   { label : 'Contacts Name' , fieldName : 'Name'},  //field name is defined in object manager
-  { label : 'Contacts Email' , fieldName : 'Email'},
-
+  { label : 'Birthday' , fieldName : 'Birthday'},
+  { label : 'Age' , fieldName : 'Age__c'},
 ]
 
 export default class MarkVisitsByGroup extends LightningElement {
+
   @track value = '';
   @track optionsArray = []; //this array will store the options for combobox
   @track cardVisible = false;   //used for show/hide card functionality
@@ -27,7 +30,7 @@ export default class MarkVisitsByGroup extends LightningElement {
       .then(response=>{
         let arr = []; //This array store the groups details in table and value pair
         for(let i=0 ; i<response.length ; i++){
-          // add the account Name as label and id as value in arr []
+          // add the group Name as label and id as value in arr []
           arr.push({ label : response[i].Name , value : response[i].Id })
         }
 
@@ -45,7 +48,7 @@ export default class MarkVisitsByGroup extends LightningElement {
     //contact data=table will display to user
     this.cardVisible = true;
 
-    //store selected accountId in "value" property
+    //store selected groupId in "value" property
     this.value  = event.detail.value;
 
     //call apex method to get contacts of selected Group
@@ -57,5 +60,27 @@ export default class MarkVisitsByGroup extends LightningElement {
         // eslint-disable-next-line no-alert
         window.alert("error:"+error)
       })
+  }
+  //Get details of selected rows
+  getSelectedRows(event){
+    const selectedRowsDetails = event.detail.selectedRows;
+    // eslint-disable-next-line no-alert
+    window.alert(JSON.stringify(selectedRowsDetails));
+  }
+
+  createVisit() {
+    /*newVisit({accountId: this.recordId, lastName: this.lastName})
+      .then(() => {
+        this.showForm = false;
+        this.dispatchEvent(new ShowToastEvent({
+          title: "Success",
+          message: "New Visit created!",
+          variant: "success"
+        }));
+        /!*refreshApex(this.contacts).then(() => {
+          // do something with the refreshed data in this.Obj
+        });*!/
+      })
+      .catch(error => console.log(error))*/
   }
 }

@@ -2,7 +2,7 @@ public with sharing class KidsGroupController {
     @AuraEnabled(Cacheable=true)
     public static List<Contact> getRelatedContacts(Id kidGroupId) {
         return [
-                SELECT Name
+                SELECT Name, Birthdate, Age__c
                 FROM Contact
                 WHERE Kids_Group_FK__c = :kidGroupId
                 WITH SECURITY_ENFORCED
@@ -15,7 +15,7 @@ public with sharing class KidsGroupController {
     }
 
     /*@AuraEnabled
-    public static void newContact(Id accountId, String lastName) {
-        insert new Contact(AccountId = accountId, LastName = lastName);
+    public static void newVisit(Date dateValue) {
+        insert new Visit__c();
     }*/
 }

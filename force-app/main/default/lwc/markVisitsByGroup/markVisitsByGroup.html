@@ -6,6 +6,7 @@
 <template>
 
   <lightning-card title="Combobox card">
+    <lightning-input type="date" name="inputDate" label="Enter a date" value={currentDate} onchange={handleChangedDate}></lightning-input>
     <!-- combobox starts here -->
     <lightning-combobox label ="Kids Group"
                         value={value}
@@ -25,12 +26,15 @@
         <lightning-datatable  key-field ="id"
                               data={data}
                               columns={columns}
-                              hidecheckbox>
+                              onrowselection={getSelectionRows}
+                              >
         </lightning-datatable>
 
       </div>
       <!-- datatable ends here -->
-
+      <div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button class="slds-m-left_x-small" label="Add Visit" onclick={createVisit}></lightning-button>
+      </div>
     </lightning-card>
 
   </template>
