@@ -4,20 +4,18 @@
 
 public with sharing class KidsService {
     public static void updateAmountOfKidsOnGroup(List<Contact> kids) {
-        Set<Id> groupIds = new Set<Id>();
+        Set<Id> kidGroupIds = new Set<Id>();
 
         for (Contact c : kids) {
-            groupIds.add(c.Kids_Group_FK__c);
+            kidGroupIds.add(c.Kids_Group_FK__c);
         }
 
-        List<AggregateResult> aggregateResults = KidsSelector.getAmountOfKidsForEachGroup();
-        System.debug(aggregateResults);
-        List<Kids_Group__c> groups = new List<Kids_Group__c>();
+        List<Kids_Group__c> updatedGroups = KidsGroupSelector.getAmountKidsByGroup(kidGroupIds);
 
-        for (AggregateResult ar : aggregateResults) {
-            groups.add(new Kids_Group__c(Id = (Id) ar.get('Kids_Group__c'), Kid_Group_Amount__c = (Integer) ar.get('amount')));
+        for (Kids_Group__c gr : updatedGroups) {
+            gr.Kid_Group_Amount__c = gr.Contacts__r.size();
         }
 
-        update groups;
+        update updatedGroups;
     }
 }

@@ -5,7 +5,6 @@
 <!-- Related Kds Contact By Group -->
 <template>
   <lightning-card title="JUNIOR Group" icon-name="standard:contact_list">
-    <lightning-input type="date" name="input1" label="Enter a date" ></lightning-input>
     <div class="info">
       <c-item-kid-contact contacts={contacts}></c-item-kid-contact>
     </div>
@@ -18,9 +17,7 @@
       <div class="slds-p-around_medium lgc-bg">
         <lightning-input type="text" label="Enter Last Name" onchange={handleLastNameChange}></lightning-input>
       </div>
-      <div class="slds-m-top_small slds-m-bottom_medium">
-        <lightning-button class="slds-m-left_x-small" label="Create Contact" onclick={createContact}></lightning-button>
-      </div>
+
     </lightning-card>
   </template>
 </template>
