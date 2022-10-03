@@ -6,9 +6,9 @@
 <template>
   <template if:true={contacts.data}>
     <template for:each={contacts.data} for:item="contact">
-      <lightning-card variant="narrow" title="Related Contact Info" icon-name="standard:contact" key={contact.Id}>
-        <p class="slds-p-horizontal_medium">{contact.Name}</p>
-        <p class="slds-p-horizontal_medium">Birthday: {contact.Birthday}</p>
+      <lightning-card variant="narrow" title={contact.Name} icon-name="standard:contact" key={contact.Id}>
+
+        <p class="slds-p-horizontal_medium">Birthdate: {contact.Birthdate}</p>
 
 
       </lightning-card>
