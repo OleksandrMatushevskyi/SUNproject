@@ -2,7 +2,7 @@
  * Created by Sanchez on 02.10.2022.
  */
 
-public with sharing class KidsService {
+public with sharing class ContactService {
     public static void updateAmountOfKidsOnGroup(List<Contact> kids) {
         Set<Id> kidGroupIds = new Set<Id>();
 

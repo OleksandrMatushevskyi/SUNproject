@@ -1,12 +1,10 @@
 public with sharing class KidsGroupHandler {
-    /*public static void handler(Map, System.TriggerOperation triggerOperation) {
+    /*public static void handler(, System.TriggerOperation triggerOperation) {
         switch on triggerOperation {
-            when AFTER_INSERT {
+            when BEFORE_INSERT {
 
             }
-            when AFTER_DELETE {
 
-            }
         }
     }*/
 }

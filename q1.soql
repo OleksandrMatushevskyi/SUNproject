@@ -5,4 +5,5 @@
 //SELECT Kids_Group_FK__c, COUNT(Id) amount FROM Contact WHERE Kids_Group_FK__c != NULL GROUP BY Kids_Group_FK__c
 //SELECT Id, Name FROM RecordType WHERE Name = 'Kid' LIMIT 1
 //SELECT Kids_Group_FK__c, COUNT(Id) amount FROM Contact WHERE Kids_Group_FK__c = 'a0D7R00002R1oXDUAZ' GROUP BY Kids_Group_FK__c
-SELECT Id, Kid_Group_Amount__c, (SELECT Id FROM Contacts__r) FROM Kids_Group__c WHERE Id = 'a0D7R00002R1oXDUAZ'
+//SELECT Id, Kid_Group_Amount__c, (SELECT Id FROM Contacts__r) FROM Kids_Group__c WHERE Id = 'a0D7R00002R1oXDUAZ'
+SELECT Kid__c FROM Visit__c WHERE Date_Visit__c = 2022-10-03 
