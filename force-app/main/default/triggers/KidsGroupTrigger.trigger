@@ -3,5 +3,5 @@
  */
 
 trigger KidsGroupTrigger on Kids_Group__c (before insert) {
-    //KidsGroupHandler.handler(Trigger.new, Trigger.operationType);
+   KidsGroupHandler.handler(Trigger.new, Trigger.operationType);
 }

@@ -3,16 +3,15 @@
  */
 
 public with sharing class KidsGroupService {
-    /*public static void validateKidAgeByGroup(List<Contact> kids) {
-        *//*for (Contact k : kids) {
-            if (k.Age__c < 6 || k.Age__c == null) {
-                k.addError('Student is too young!');
+    public static void validateAmountKidsByGroup(List<Kids_Group__c> groups) {
+        /*try {
+            for (Kids_Group__c g : groups) {
+                if (g.Kid_Group_Amount__c > g.Limit_Kids_by_Group__c) {
+                    g.addError('Group is FULL! Create new Group !');
+                }
             }
-        }*//*
-    }*/
-
-    /*public static void updateAmountOfKidsOnGroup(List<Contact> kids) {
-        update new Kids_Group__c(Id = groupId, Kid_Group_Amount__c = relativeContactList.size());
-    }*/
-
+        }catch (Exception e){
+            throw e;
+        }*/
+    }
 }

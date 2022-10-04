@@ -8,8 +8,8 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 //Define columns for Datatable
 const columns = [
   { label : 'Contacts Name' , fieldName : 'Name'},  //field name is defined in object manager
-  { label : 'Birthdate' , fieldName : 'Birthdate'},
   { label : 'Age' , fieldName : 'Age__c'},
+  { label : 'Birthdate' , fieldName : 'Birthdate'},
 ]
 
 export default class MarkVisitsByGroup extends LightningElement {
@@ -25,7 +25,7 @@ export default class MarkVisitsByGroup extends LightningElement {
   //I change date
   handleChangedDate(event) {
     this.inputDate = event.target.value;
-    console.log("change date: " + this.inputDate);
+    //console.log("change date: " + this.inputDate);
 
   }
 
