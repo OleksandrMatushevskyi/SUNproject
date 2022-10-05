@@ -3,6 +3,19 @@
  */
 
 public with sharing class ContactService {
+
+    public static void autoCompleteAccountField(List<Contact> listKidOrTeacher) {
+        try {
+            for (Contact cnt : listKidOrTeacher) {
+                if (cnt.RecordType.Name == 'Kid' || cnt.RecordType.Name == 'Teacher') {
+                    cnt.AccountId = (Id) ContactSelector.getIdKinderGarden().get(0).Id;
+                }
+            }
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
     public static void updateAmountOfKidsOnGroup(List<Contact> kids) {
         Set<Id> kidGroupIds = new Set<Id>();
 

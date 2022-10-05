@@ -7,6 +7,9 @@ public with sharing class ContactHandler {
         //Id kidRecordTypeId = [SELECT Id, Name FROM RecordType WHERE Name = 'Kid' LIMIT 1].Id;
 
         switch on triggerOperation {
+            when BEFORE_INSERT {
+                ContactService.autoCompleteAccountField(newListKids);
+            }
             when AFTER_INSERT {
                 ContactService.updateAmountOfKidsOnGroup(newListKids);
             }

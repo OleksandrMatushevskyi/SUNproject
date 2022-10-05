@@ -3,8 +3,8 @@
  */
 
 public with sharing class ContactSelector {
-    /*public static List<Contact> getListKidsByGroup(Set<Id> gIds) {
-        //return [SELECT Id, Kid_Group_Amount__c, (SELECT Id FROM Contacts__r) FROM Kids_Group__c WHERE Id IN : gIds];
-    }*/
-
+    //bad solution, just for test version
+    public static List<Account> getIdKinderGarden() {
+        return [SELECT Id, Name FROM Account WHERE Name LIKE 'KinderGarden%' LIMIT 1];
+    }
 }
