@@ -21,6 +21,7 @@ export default class MarkVisitsByGroup extends LightningElement {
   columns = columns;
   selectedRows = [];
   inputDate = new Date();
+  currentDate =  this.inputDate.getFullYear() + '/' + (this.inputDate.getMonth() + 1)+ '/' + this.inputDate.getDate();
 
   //I change date
   handleChangedDate(event) {
@@ -54,32 +55,32 @@ export default class MarkVisitsByGroup extends LightningElement {
   //Get Selected Group recordId
   handleChangedValue(event){
 
-    //Whenever a group is selected in combobox then "cardVisible" will become true and
-    //contact data=table will display to user
-    this.cardVisible = true;
+  //Whenever a group is selected in combobox then "cardVisible" will become true and
+  //contact data=table will display to user
+  this.cardVisible = true;
 
-    //store selected groupId in "value" property
-    this.value  = event.detail.value;
+  //store selected groupId in "value" property
+  this.value  = event.detail.value;
 
-    //call apex method to get contacts of selected Group
-    getRelatedContacts({ kidGroupId : this.value})  //pass selected Group recordId to apex method to get related contacts
-      .then( result =>{
-        this.data = result;
-      })
-      .catch( error =>{
-        console.log("error: "+error);
-      })
+  //call apex method to get contacts of selected Group
+   getRelatedContacts({ kidGroupId : this.value})  //pass selected Group recordId to apex method to get related contacts
+     .then( result =>{
+       this.data = result;
+     })
+     .catch( error =>{
+       console.log("error: "+error);
+     })
   }
 
   //Get details of selected rows
   getSelectedRows(event){
-    this.selectedRows = event.detail.selectedRows;
-    // eslint-disable-next-line no-alert
-    //window.alert(JSON.stringify(this.selectedRows));
+  this.selectedRows = event.detail.selectedRows;
+  // eslint-disable-next-line no-alert
+  //window.alert(JSON.stringify(this.selectedRows));
   }
 
   createVisit() {
-    newVisit({dateValue: this.inputDate, selectedKids: this.selectedRows})
+    newVisit({dateValue: this.inputDate, selectedKids: this.selectedRows, allKids: this.data})
       .then(() => {
 
         this.dispatchEvent(new ShowToastEvent({
@@ -87,6 +88,8 @@ export default class MarkVisitsByGroup extends LightningElement {
           message: "New Visit created!",
           variant: "success"
         }));
+
+        this.cardVisible = false;
         /*refreshApex(this.contacts).then(() => {
           // do something with the refreshed data in this.Obj
         });*/

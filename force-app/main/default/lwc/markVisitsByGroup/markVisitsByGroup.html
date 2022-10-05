@@ -6,7 +6,7 @@
 <template>
   <lightning-card title="Enter Visit">
     <div class="info">
-      <lightning-input type="date" name="inputDate" label="Select Date" value={inputDate} onchange={handleChangedDate}></lightning-input>
+      <lightning-input type="date" name="inputDate" label="Select Date" value={currentDate} onchange={handleChangedDate}></lightning-input>
     </div>
     <!-- combobox starts here -->
     <div class="slds-m-top_small info">
@@ -15,7 +15,6 @@
                           placeholder = "Select Kids Group"
                           options={options}
                           onchange={handleChangedValue}>
-
       </lightning-combobox>
     </div>
     <!-- combobox end here -->

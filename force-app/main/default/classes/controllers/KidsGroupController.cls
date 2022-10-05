@@ -15,11 +15,12 @@ public with sharing class KidsGroupController {
     }
 
     @AuraEnabled
-    public static void newVisit(Date dateValue, List<Contact> selectedKids) {
+    public static void newVisit(Date dateValue, List<Contact> selectedKids, List<Contact> allKids) {
+
         List<Visit__c> listVisitsForInsert = new List<Visit__c>();
 
-        for(Contact cnt : selectedKids) {
-            listVisitsForInsert.add(new Visit__c(Date_Visit__c = dateValue, Kid__c = cnt.Id, Present__c = true));
+        for(Contact cnt : allKids) {
+            listVisitsForInsert.add(new Visit__c(Date_Visit__c = dateValue, Kid__c = cnt.Id, Present__c = selectedKids.contains(cnt)));
         }
 
         insert listVisitsForInsert;
